@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍔 BiteRush
 
-## Getting Started
+BiteRush is a responsive food delivery web application for discovering restaurants, browsing and filtering dishes, managing a shopping cart, and placing an order through a customer details form. Cart and most recent order data are stored in the browser.
 
-First, run the development server:
+## ✨ Features
+
+- Responsive homepage with food categories, featured dishes, restaurant highlights, and offer cards.
+- Restaurant listing with restaurant search, cuisine and minimum rating filters, open status filtering, and sorting by rating, delivery time, or delivery fee.
+- Food menu with search by dish name, description, or category; category filtering; optional restaurant filtering; and sorting by recommendation, price, rating, or popularity.
+- Add dishes to the cart, change quantities, remove items, or clear the cart.
+- Cart persistence in localStorage and a cart count displayed in the navigation.
+- Checkout form with validation for customer name, phone number, email, delivery address, city, and pincode. Delivery instructions are optional.
+- Order confirmation showing the saved order ID, customer and delivery details, ordered items, order date, and stored price totals.
+- An empty confirmation state when there is no valid recent order in localStorage.
+
+Orders are saved in the current browser. The project does not include a server-side order database, payment processor, or live delivery tracking.
+
+## 🛠️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| Next.js App Router | Application framework, routes, and server/client component structure |
+| React | UI components and interactive client-side experiences |
+| TypeScript | Type safety for components, data, and order/cart models |
+| Tailwind CSS | Responsive styling and design system |
+| React Context API | Shared cart state and cart actions |
+| LocalStorage | Persistence for the cart and most recent order |
+
+## 📂 Project Structure
+
+```text
+biterush/
+├── app/
+│   ├── cart/
+│   ├── checkout/
+│   ├── menu/
+│   ├── order-success/
+│   ├── restaurants/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   ├── cart/
+│   ├── checkout/
+│   ├── common/
+│   ├── food/
+│   ├── home/
+│   ├── layout/
+│   ├── order/
+│   └── restaurants/
+├── context/
+│   └── CartContext.tsx
+├── data/
+│   ├── categories.ts
+│   ├── foodItems.ts
+│   ├── offers.ts
+│   └── restaurants.ts
+├── lib/
+│   ├── storage.ts
+│   └── utils.ts
+├── public/
+│   └── images/
+├── types/
+│   └── index.ts
+├── package.json
+└── README.md
+```
+
+## 🚀 Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start the local development server |
+| `npm run build` | Create a production build |
+| `npm run start` | Serve the production build |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## 🧾 Order and Cart Storage
 
-To learn more about Next.js, take a look at the following resources:
+The cart is managed by `CartContext` and persisted by the storage helpers in `lib/storage.ts`. Checkout validates customer details, creates an order record from the current cart and calculated totals, and saves it as the most recent order in localStorage. The order success page reads that record in the browser and shows an empty state if it is missing or invalid.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Restaurant, food, category, and offer content is currently provided by the local TypeScript data files in `data/`.
