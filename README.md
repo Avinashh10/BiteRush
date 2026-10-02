@@ -15,6 +15,10 @@ BiteRush is a responsive food delivery web application for discovering restauran
 
 Orders are saved in the current browser. The project does not include a server-side order database, payment processor, or live delivery tracking.
 
+## 🌐 Live Demo
+
+[Visit Brew & Bloom](https://bite-rush-ashy.vercel.app/)
+
 ## 🛠️ Tech Stack
 
 | Technology | Purpose |
